@@ -1,4 +1,11 @@
 # Databricks notebook source
+from pyspark.sql import SparkSession
+from pyspark.sql.types import *
+
+spark = SparkSession.builder.appName("CreateSchema").getOrCreate()
+
+# COMMAND ----------
+
 ADLS_DEV_BASE_PATH = "abfss://oaon-operations-dev@dqpadls3107.dfs.core.windows.net/"
 
 # COMMAND ----------
@@ -7,8 +14,8 @@ dbutils.fs.ls("abfss://oaon-operations-dev@dqpadls3107.dfs.core.windows.net/")
 
 # COMMAND ----------
 
-def readEntity(department,entity):
-  df=spark.read.format("csv").option("path",f"abfss://oaon-operations-dev@dqpadls3107.dfs.core.windows.net/oaon-sandbox.operations.dynamics.com/Tables/{department}/{entity}/").load()
+def readEntity(department,entity,schema):
+  df=spark.read.format("csv").schema(schema).option("path",f"abfss://oaon-operations-dev@dqpadls3107.dfs.core.windows.net/oaon-sandbox.operations.dynamics.com/Tables/{department}/{entity}/").load()
   return df
 
 # COMMAND ----------
