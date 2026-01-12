@@ -15,7 +15,7 @@ DeltaLakePath="DeltaLake/Raw/Purchase/"+entityName
 # COMMAND ----------
 
 schema = StructType([
-    StructField("ContractId", IntegerType(), True),   
+    StructField("ContractId", LongType(), True),   
     StructField("LastProcessedChange_DateTime", TimestampType(), True),   
     StructField("DataLakeModified_DateTime", TimestampType(), True),
     StructField("FirstParty", StringType(), True),
