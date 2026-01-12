@@ -22,3 +22,10 @@ def readEntity(department,entity,schema):
 
 def writeEntity(entity_df,DeltaLakePath):
     entity_df.write.mode("overwrite").option("overwriteSchema","true").option("path",ADLS_DEV_BASE_PATH+DeltaLakePath).save()
+
+# COMMAND ----------
+
+def readFromDeltaPath(DeltaLakePath):
+    df=spark.read.format("delta").option("path",ADLS_DEV_BASE_PATH+DeltaLakePath).load()
+    return df
+
