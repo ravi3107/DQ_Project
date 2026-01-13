@@ -29,7 +29,8 @@ dimVendor_df=VendTable_df.filter(VendTable_df.RecordId.isNotNull()).select(
     trim(VendTable_df.TaxId).alias("TaxId"),
     trim(VendTable_df.CurrencyCode).alias("CurrencyCode")
 ).withColumn("UpdatedDateTime",lit(UpdatedDateTime)
-).withColumn("VendorHashKey",xxhash64(col("VendorRecordId")))
+).withColumn("VendorHashKey",xxhash64(col("VendorRecordId"))
+).withColumn("VendorDiscount",when(col("Country")=='US',lit(0.01)).when(col("Country")=='UK',lit(0.006)).otherwise(lit(0)))
 
 display(dimVendor_df)
 
