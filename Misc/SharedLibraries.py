@@ -1,6 +1,8 @@
 # Databricks notebook source
 from pyspark.sql import SparkSession
 from pyspark.sql.types import *
+from pyspark.sql.functions import *
+import datetime
 
 spark = SparkSession.builder.appName("CreateSchema").getOrCreate()
 
