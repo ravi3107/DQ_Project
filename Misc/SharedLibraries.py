@@ -25,7 +25,7 @@ def readEntity(department,entity,schema):
 # COMMAND ----------
 
 def writeEntity(entity_df,DeltaLakePath):
-    entity_df.write.mode("overwrite").option("overwriteSchema","true").option("path",ADLS_DEV_BASE_PATH+DeltaLakePath).save()
+    entity_df.write.mode("overwrite").option("overwriteSchema","true").option("mergeSchema","true").option("path",ADLS_DEV_BASE_PATH+DeltaLakePath).save()
 
 # COMMAND ----------
 
