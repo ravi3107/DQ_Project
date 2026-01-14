@@ -14,4 +14,4 @@ display(df)
 
 # COMMAND ----------
 
-df.write.mode("overwrite").saveAsTable("bronze.purchaseorder")
+df.write.mode("overwrite").option("mergeSchema","true").saveAsTable("bronze.purchaseorder")
